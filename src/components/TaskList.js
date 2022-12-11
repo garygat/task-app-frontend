@@ -4,9 +4,11 @@ import Task from './Task';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { URL } from '../App';
+import { APP_NAME } from '../App';
+
 import loadingImg from '../assets/loader.gif';
 // import { getTask } from '../../../backend/controllers/taskController';
-const appName = `JJ Burnek's Task Manager`;
+const appName = `${process.env.REACT_APP_NAME_VAR}`;
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
