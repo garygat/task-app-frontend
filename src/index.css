@@ -445,14 +445,14 @@ a:hover {
 
 .task-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 800px;
   height: auto;
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 5px;
   box-shadow: var(--box-shadow);
   overflow: hidden;
-  margin-top: 100px;
+  margin-top: 60px;
   padding: 3rem 2rem;
 }
 
@@ -490,6 +490,7 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  /* max-width: 500px; */
   background-color: #eee;
   padding: 10px 8px;
   margin: 10px 0;
@@ -534,6 +535,7 @@ a:hover {
 
 .task-icons {
   font-size: 1.6rem;
+  /* width: 100px; */
 }
 
 .task-icons > * {
