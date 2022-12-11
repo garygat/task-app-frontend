@@ -453,6 +453,7 @@ a:hover {
   box-shadow: var(--box-shadow);
   overflow: hidden;
   margin-top: 60px;
+  margin-bottom: 20px;
   padding: 3rem 2px;
 }
 

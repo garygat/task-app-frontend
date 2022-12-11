@@ -6,7 +6,7 @@ const TaskForm = ({ createTask, name, handleInputChange, isEditing, updateTask }
         name='name'
         id=''
         placeholder='Add a task'
-        maxLength={30}
+        maxLength={25}
         value={name}
         onChange={handleInputChange}
       />
