@@ -1,17 +1,19 @@
 import axios from 'axios';
 import TaskForm from './TaskForm';
-import Task from './Task';
+import DeletedTask from './DeletedTask';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { URL } from '../App';
 import { APP_NAME } from '../App';
-
+import Button from 'react-bootstrap/Button';
 import loadingImg from '../assets/loader.gif';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; //
 // import { getTask } from '../../../backend/controllers/taskController';
 const appName = `${process.env.REACT_APP_NAME_VAR}`;
 
-const TaskList = () => {
-  const [tasks, setTasks] = useState([]);
+const DeletedList = () => {
+  const [delTasks, setDelTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -27,11 +29,13 @@ const TaskList = () => {
     setFormData({ ...FormData, [name]: value });
   };
 
-  const getTasks = async () => {
+  const getDeletedTasks = async () => {
     setIsLoading(true);
     try {
-      const { data } = await axios.get(`${URL}/api/tasks`);
-      setTasks(data);
+      const { data } = await axios.get(`${URL}/api/deleted`);
+      setDelTasks(data);
+      console.log(data);
+      // alert('tae');
       setIsLoading(false);
     } catch (error) {
       toast.error(error.message);
@@ -39,37 +43,37 @@ const TaskList = () => {
     }
   };
   useEffect(() => {
-    getTasks();
+    getDeletedTasks();
   }, []);
-  const createTask = async (e) => {
+  const createDeletedTask = async (e) => {
     e.preventDefault();
     if (name === '') {
       return toast.error('Input field empty...');
     }
     try {
-      await axios.post(`${URL}/api/tasks`, formData);
+      await axios.post(`${URL}/api/deleted`, formData);
       setFormData({ ...formData, name: '' });
       toast.success('Task added successfully!!!');
-      getTasks();
+      getDeletedTasks();
     } catch (error) {
       toast.error(error.message);
       console.log(error);
     }
   };
-  const deleteTask = async (id) => {
+  const deleteTask = async () => {
     try {
-      await axios.delete(`${URL}/api/tasks/${id}`);
-      getTasks();
+      await axios.delete(`${URL}/api/deleted/`);
+      getDeletedTasks();
     } catch (error) {
       toast.error(error.message);
     }
   };
   useEffect(() => {
-    const cTask = tasks.filter((task) => {
-      return task.completed === true;
+    const cTask = delTasks.filter((deletedTask) => {
+      return deletedTask.completed === true;
     });
     setCompletedTasks(cTask);
-  }, [tasks]);
+  }, [delTasks]);
   const getSingleTask = async (task) => {
     setFormData({ name: task.name, completed: false });
     setTaskId(task._id);
@@ -81,45 +85,81 @@ const TaskList = () => {
       return toast.error('Input field empty...');
     }
     try {
-      await axios.put(`${URL}/api/tasks/${taskId}`, formData);
+      await axios.put(`${URL}/api/deleted/${taskId}`, formData);
       setFormData({ ...formData, name: '' });
       setIsEditing(false);
       toast.success('Task edited successfully!!!');
-      getTasks();
+      getDeletedTasks();
     } catch (error) {
       toast.error(error.message);
     }
   };
-  const setToComplete = async (task) => {
+  const setToComplete = async (deletedTask) => {
     const newFormData = {
-      name: task.name,
+      name: deletedTask.name,
       completed: true,
     };
     try {
-      await axios.put(`${URL}/api/tasks/${task._id}`, newFormData);
-      getTasks();
+      await axios.put(`${URL}/api/deleted/${deletedTask._id}`, newFormData);
+      getDeletedTasks();
     } catch (error) {
       toast.error(error.message);
     }
   };
+  const emptyBin = async () => {
+    if (delTasks.length > 0) {
+      try {
+        axios.post(`${URL}/api/deleted/delete`);
+        await getDeletedTasks();
+        toast.success('Bin Emptied!!!');
+      } catch (error) {
+        toast.error(error.message);
+      }
+    } else {
+      toast.error(`Bin currently empty!!!`);
+      await getDeletedTasks();
+    }
+  };
+
+  // #CONFIRM DELETION MODAL
+  const submit = () => {
+    confirmAlert({
+      title: 'Confirm Emptying Bin',
+      message: 'Are you sure to do this?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => emptyBin(),
+        },
+        {
+          label: 'No',
+          // onClick: () => alert('Click No')
+        },
+      ],
+    });
+  };
+
+  // return (
+  //   <div className='container'>
+  //     <button onClick={submit}>Confirm dialog</button>
+  //   </div>
+  // );
   return (
     <div>
-      {/* <h1>{appName}</h1> */}
+      {/* <h1>{appName}</h1>
       <TaskForm
         name={name}
         handleInputChange={handleInputChange}
-        createTask={createTask}
+        createDeletedTask={createDeletedTask}
         isEditing={isEditing}
         updateTask={updateTask}
-      />
-      {tasks.length > 0 && (
+      /> */}
+      {delTasks.length > 0 && (
         <div className='--flex-between --pb'>
           <p>
-            <b>Total Tasks: </b> {tasks.length}
+            <b>Total Binned Tasks: </b> {delTasks.length}
           </p>
-          <p>
-            <b>Completed Tasks: </b> {completedTasks.length}
-          </p>
+          <p>{/* <b>Completed Tasks: </b> {completedTasks.length} */}</p>
         </div>
       )}
 
@@ -132,13 +172,13 @@ const TaskList = () => {
           />
         </div>
       )}
-      {!isLoading && tasks.length === 0 ? (
+      {!isLoading && delTasks.length === 0 ? (
         <p>No Task Found!!!</p>
       ) : (
         <>
-          {tasks.map((task, index) => {
+          {delTasks.map((task, index) => {
             return (
-              <Task
+              <DeletedTask
                 key={task._id}
                 task={task}
                 index={index}
@@ -150,8 +190,25 @@ const TaskList = () => {
           })}
         </>
       )}
+      <div class='text-center'>
+        <form
+          action='/deleted/delete'
+          method='post'
+          onSubmit="return confirm('Are you sure you wish to clear your todo list?');"
+        >
+          <Button
+            className='text-center fs-1 btn-danger w-100'
+            id='deleteAll'
+            class='btn btn-lg rounded-2 btn-pink clear w-100'
+            name='delete'
+            onClick={submit}
+          >
+            Clear
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default TaskList;
+export default DeletedList;

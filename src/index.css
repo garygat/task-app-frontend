@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Fauna+One&family=Merriweather&family=Montserrat&family=Open+Sans&family=Oxygen&family=Raleway&family=Roboto:ital@0;1&family=Ubuntu:wght@300;400&display=swap');
 :root {
   --font-family: 'Poppins', sans-serif;
   --dark-blue: #0a1930;
@@ -48,6 +48,10 @@ section {
 }
 
 /* UTILITY CLASSES */
+/* color */
+.text-cyan {
+  color: cyan;
+}
 
 /* Flex */
 .--flex-center {
@@ -459,12 +463,12 @@ a:hover {
 
 .task-form {
   width: 100%;
-  margin: 2rem 0;
+  margin: 0.5rem 0 2rem;
   display: flex;
 }
 .task-form input {
   width: 85%;
-  height: 4rem;
+  height: 5rem;
   font-size: 1.6rem;
   padding: 0 5px;
   outline: none;
@@ -472,7 +476,7 @@ a:hover {
 }
 .task-form button {
   width: 15%;
-  height: 4rem;
+  height: 5rem;
   font-size: 1.8rem;
   cursor: pointer;
   background-color: var(--color-pink);
@@ -497,7 +501,31 @@ a:hover {
   margin: 10px 0;
   animation: slide-in ease 0.5s;
 }
-
+/* NAV */
+#NavBarBrand {
+  color: #272729;
+  font-family: 'Open Sans', 'sans-serif';
+  font-weight: bold;
+  text-shadow: 1px 0 2px var(--color-pink);
+  transition: color 0.5s, text-shadow 0.5s;
+}
+#NavBarBrand:hover {
+  color: var(--color-pink);
+  text-shadow: 1px 1px 1px black;
+}
+.nav-link {
+  text-shadow: 1px 0 2px var(--color-pink);
+  transition: color 0.5s;
+}
+#deleteAll {
+  background-color: var(--color-pink);
+  transition: background-color 0.6s;
+  font-family: 'Ubuntu', sans-serif;
+}
+#deleteAll:hover,
+#deleteAll:focus {
+  background-color: var(--color-danger);
+}
 @keyframes slide-in {
   0% {
     transform: translateX(40px);
