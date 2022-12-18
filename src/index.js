@@ -5,6 +5,7 @@ import App from './App';
 import AppDeleted from './AppDeleted';
 import NavBar from './components/navbar';
 import Button from 'react-bootstrap/Button';
+import About from './About';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,10 @@ root.render(
         <Route
           path='/deleted'
           element={<AppDeleted />}
+        />
+        <Route
+          path='/about'
+          element={<About />}
         />
       </Routes>
     </BrowserRouter>

@@ -1,6 +1,7 @@
 // import React from 'react';
 import { FaCheckDouble, FaRegTrashAlt, FaEdit } from 'react-icons/fa';
 import { RiArrowGoBackFill } from 'react-icons/ri';
+import { MdRestore } from 'react-icons/md';
 // import TaskList from './TaskList';
 // import { GrCheckboxSelected } from 'react-icons/fa';
 
@@ -12,7 +13,8 @@ const DeletedTask = ({ task, index, deleteTask, getSingleTask, setToComplete, re
         {task.name}
       </p>
       <div className='task-icons'>
-        <RiArrowGoBackFill
+        <MdRestore
+          className='fs-1'
           color='#007bff'
           onClick={() => deleteTask(task._id)}
         />

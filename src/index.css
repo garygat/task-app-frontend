@@ -52,6 +52,15 @@ section {
 .text-cyan {
   color: cyan;
 }
+.text-shadow-black {
+  text-shadow: 1px 1px 2px #0a1930;
+}
+.text-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+.text-raleway {
+  font-family: 'Raleway', sans-serif;
+}
 
 /* Flex */
 .--flex-center {
@@ -449,7 +458,8 @@ a:hover {
   width: 100%;
   min-height: 100vh;
   /* background-color: var(--color-primary); */
-  background-color: var(--light-blue);
+  /* background-color: var(--light-blue); */
+  background: url('./assets/pattern.svg') no-repeat center center/cover;
   display: flex;
   justify-content: center;
   align-items: start;
