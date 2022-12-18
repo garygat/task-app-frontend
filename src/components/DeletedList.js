@@ -183,7 +183,7 @@ const DeletedList = () => {
         </div>
       )}
       {!isLoading && delTasks.length === 0 ? (
-        <p>No Task Found!!!</p>
+        <p>No Binned Tasks Found!!!</p>
       ) : (
         <>
           {delTasks.map((task, index) => {
