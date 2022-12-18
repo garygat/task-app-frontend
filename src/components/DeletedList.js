@@ -210,7 +210,7 @@ const DeletedList = () => {
           <Button
             // className='text-center fs-1 btn-danger w-100'
             id='deleteAll'
-            className='btn btn-lg rounded-2 fs-3 btn-pink clear w-100'
+            className='btn btn-lg rounded-2 fs-3 --btn-light-blue clear w-100'
             name='delete'
             onClick={submit}
           >

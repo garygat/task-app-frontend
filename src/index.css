@@ -316,6 +316,15 @@ p {
   color: #fff;
   background: orangered;
 }
+.--btn-light-blue {
+  background: #1f93ff;
+  color: #fff;
+}
+.--btn-light-blue:hover,
+.--btn-light-blue:focus {
+  background: #1d70be;
+  color: #fff;
+}
 
 .--btn-success {
   color: #fff;
@@ -440,7 +449,7 @@ a:hover {
   width: 100%;
   min-height: 100vh;
   /* background-color: var(--color-primary); */
-  background-color: var(--color-pink);
+  background-color: var(--light-blue);
   display: flex;
   justify-content: center;
   align-items: start;
@@ -479,14 +488,14 @@ a:hover {
   height: 5rem;
   font-size: 1.8rem;
   cursor: pointer;
-  background-color: var(--color-pink);
+  background-color: var(--light-blue);
   color: #fff;
   border: none;
   transition: all 0.3s;
 }
 
 .task-form button:hover {
-  background-color: var(--color-pink2);
+  background-color: #143f6e;
 }
 
 .task {
@@ -506,25 +515,33 @@ a:hover {
   color: #272729;
   font-family: 'Open Sans', 'sans-serif';
   font-weight: bold;
-  text-shadow: 1px 0 2px var(--color-pink);
+  text-shadow: 1px 0 2px var(--light-blue);
   transition: color 0.5s, text-shadow 0.5s;
 }
 #NavBarBrand:hover {
-  color: var(--color-pink);
+  color: var(--light-blue);
   text-shadow: 1px 1px 1px black;
 }
+.nav-logo {
+  color: #395fa7;
+  font-family: 'Open Sans', 'sans-serif';
+  margin-right: 5px;
+  font-weight: bold;
+  text-shadow: 1px 0 2px var(--light-blue);
+  transition: color 0.5s, text-shadow 0.5s;
+}
 .nav-link {
-  text-shadow: 1px 0 2px var(--color-pink);
+  text-shadow: 1px 0 2px var(--light-blue);
   transition: color 0.5s;
 }
 #deleteAll {
-  background-color: var(--color-pink);
+  background-color: var(--light-blue);
   transition: background-color 0.6s;
   font-family: 'Ubuntu', sans-serif;
 }
 #deleteAll:hover,
 #deleteAll:focus {
-  background-color: var(--color-danger);
+  background-color: #215fa1;
 }
 @keyframes slide-in {
   0% {

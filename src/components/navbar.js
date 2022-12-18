@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { FaCheckDouble, FaRegTrashAlt, FaEdit } from 'react-icons/fa';
+import { FaTasks } from 'react-icons/fa';
 
 export const URL = process.env.REACT_APP_SERVER_URL;
 export const APP_NAME = process.env.REACT_APP_NAME_VAR;
@@ -24,7 +25,11 @@ function NavBar() {
         className='fs-3 text-cyan'
         id='NavBarBrand'
       >
-        {APP_NAME}
+        <FaTasks
+          className='nav-logo'
+          // margin='0 5px 0 0'
+        />{' '}
+        {' ' + APP_NAME}
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
@@ -33,7 +38,7 @@ function NavBar() {
             href='/deleted'
             className='fs-3'
           >
-            <FaRegTrashAlt color='#f086d0' />
+            <FaRegTrashAlt color='#1f93ff' />
           </Nav.Link>
           {/* <Nav.Link href='#link'>Link</Nav.Link> */}
         </Nav>
