@@ -14,6 +14,7 @@ root.render(
       <Routes>
         <Route
           path='/'
+          title='tae'
           element={<App />}
         />
         <Route

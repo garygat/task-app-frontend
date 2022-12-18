@@ -34,7 +34,7 @@ const DeletedList = () => {
     try {
       const { data } = await axios.get(`${URL}/api/deleted`);
       setDelTasks(data);
-      console.log(data);
+      // console.log(data);
       // alert('tae');
       setIsLoading(false);
     } catch (error) {
@@ -60,9 +60,9 @@ const DeletedList = () => {
       console.log(error);
     }
   };
-  const deleteTask = async () => {
+  const deleteTask = async (id) => {
     try {
-      await axios.delete(`${URL}/api/deleted/`);
+      await axios.delete(`${URL}/api/deleted/${id}`);
       getDeletedTasks();
     } catch (error) {
       toast.error(error.message);
@@ -101,6 +101,15 @@ const DeletedList = () => {
     };
     try {
       await axios.put(`${URL}/api/deleted/${deletedTask._id}`, newFormData);
+      getDeletedTasks();
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+  const returnToTasks = async (id) => {
+    try {
+      console.log(id);
+      await axios.delete(`${URL}/api/deleted/${id}`);
       getDeletedTasks();
     } catch (error) {
       toast.error(error.message);
@@ -185,6 +194,7 @@ const DeletedList = () => {
                 deleteTask={deleteTask}
                 getSingleTask={getSingleTask}
                 setToComplete={setToComplete}
+                returnToTasks={returnToTasks}
               />
             );
           })}
@@ -197,9 +207,9 @@ const DeletedList = () => {
           onSubmit="return confirm('Are you sure you wish to clear your todo list?');"
         >
           <Button
-            className='text-center fs-1 btn-danger w-100'
+            // className='text-center fs-1 btn-danger w-100'
             id='deleteAll'
-            class='btn btn-lg rounded-2 btn-pink clear w-100'
+            className='btn btn-lg rounded-2 fs-3 btn-pink clear w-100'
             name='delete'
             onClick={submit}
           >
