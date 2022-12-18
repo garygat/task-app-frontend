@@ -38,7 +38,10 @@ function NavBar() {
             href='/deleted'
             className='fs-3'
           >
-            <FaRegTrashAlt color='#1f93ff' />
+            <FaRegTrashAlt
+              color='#2e5f94'
+              className='nav-bin'
+            />
           </Nav.Link>
           {/* <Nav.Link href='#link'>Link</Nav.Link> */}
         </Nav>

@@ -84,7 +84,7 @@ const TaskList = () => {
       await axios.put(`${URL}/api/tasks/${taskId}`, formData);
       setFormData({ ...formData, name: '' });
       setIsEditing(false);
-      toast.success('Task edited successfully!!!');
+      toast.success('Task edited successfully!!!\n Old data moved to bin!!!');
       getTasks();
     } catch (error) {
       toast.error(error.message);

@@ -13,24 +13,10 @@ const DeletedTask = ({ task, index, deleteTask, getSingleTask, setToComplete, re
       </p>
       <div className='task-icons'>
         <RiArrowGoBackFill
-          color='#52B75A'
+          color='#007bff'
           onClick={() => deleteTask(task._id)}
         />
       </div>
-      {/* <div className='task-icons'>
-        <FaCheckDouble
-          color='#52B75A'
-          onClick={() => setToComplete(task)}
-        />
-        <FaEdit
-          color='#5896CA'
-          onClick={() => getSingleTask(task)}
-        />
-        <FaRegTrashAlt
-          color='#E2353F'
-          onClick={() => deleteTask(task._id)}
-        />
-      </div> */}
     </div>
   );
 };

@@ -18,7 +18,7 @@
 
   --color-primary: #007bff;
   --color-success: #28a745;
-  --color-danger: orangered;
+  --color-danger: #ff4500;
 }
 
 * {
@@ -562,7 +562,7 @@ a:hover {
   left: 0;
   height: 100%;
   width: 5px;
-  background-color: var(--color-danger);
+  background-color: #f87575;
 }
 
 .completed {
@@ -576,7 +576,8 @@ a:hover {
   left: 0;
   height: 100%;
   width: 5px;
-  background-color: var(--color-success);
+  /* background-color: var(--color-success); */
+  background-color: var(--color-primary);
 }
 
 .task-icons {
