@@ -11,13 +11,13 @@ function About() {
     <div className='app mt-3 mt-xl-5'>
       <div className='task-container text-center text-raleway'>
         <div className='py-2 px-3'>
-          <h3 className='display-3'>
+          <h3 className='display-3 about-container'>
             <FaTasks className='display-3 text-primary pe-2' />
             {APP_NAME}
           </h3>
-          <p className='fst-italic'>"Makes your life easier and accomplish more today."</p>
+          <p className='fst-italic about-container'>"Makes your life easier and accomplish more today."</p>
         </div>
-        <div className='members py-2 px-3 pt-5'>
+        <div className='members py-2 px-3 pt-5 about-container'>
           <p>Paulo Santiago</p>
           <p>John Andrei Ignacio</p>
           <p>Kyla Ysabel Nuguid</p>

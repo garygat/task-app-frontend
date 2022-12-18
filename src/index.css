@@ -553,6 +553,10 @@ a:hover {
 #deleteAll:focus {
   background-color: #215fa1;
 }
+.about-container {
+  animation: slide-in ease 0.7s;
+}
+
 @keyframes slide-in {
   0% {
     transform: translateX(40px);
