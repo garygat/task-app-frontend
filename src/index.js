@@ -18,7 +18,7 @@ root.render(
           element={<App />}
         />
         <Route
-          path='deleted'
+          path='/deleted'
           element={<AppDeleted />}
         />
       </Routes>

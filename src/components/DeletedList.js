@@ -63,6 +63,7 @@ const DeletedList = () => {
   const deleteTask = async (id) => {
     try {
       await axios.delete(`${URL}/api/deleted/${id}`);
+      toast.success('Task restored successfully!');
       getDeletedTasks();
     } catch (error) {
       toast.error(error.message);
