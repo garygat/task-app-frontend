@@ -8,7 +8,7 @@ export const APP_NAME = process.env.REACT_APP_NAME_VAR;
 document.title = process.env.REACT_APP_DOC_TITLE;
 function About() {
   return (
-    <div className='app mt-3 mt-xl-5'>
+    <div className='app pt-3 pt-xl-5'>
       <div className='task-container text-center text-raleway'>
         <div className='py-2 px-3'>
           <h3 className='display-3 about-container'>

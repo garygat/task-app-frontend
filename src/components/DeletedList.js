@@ -63,7 +63,7 @@ const DeletedList = () => {
   const deleteTask = async (id) => {
     try {
       await axios.delete(`${URL}/api/deleted/${id}`);
-      toast.success('Task restored successfully!');
+      toast.success('Binned task deleted successfully!');
       getDeletedTasks();
     } catch (error) {
       toast.error(error.message);
@@ -109,8 +109,8 @@ const DeletedList = () => {
   };
   const returnToTasks = async (id) => {
     try {
-      console.log(id);
-      await axios.delete(`${URL}/api/deleted/${id}`);
+      await axios.delete(`${URL}/api/deleted/restore/${id}`);
+      toast.success('Task restored successfully!');
       getDeletedTasks();
     } catch (error) {
       toast.error(error.message);
@@ -122,6 +122,7 @@ const DeletedList = () => {
         axios.post(`${URL}/api/deleted/delete`);
         await getDeletedTasks();
         toast.success('Bin Emptied!!!');
+        await getDeletedTasks();
       } catch (error) {
         toast.error(error.message);
       }

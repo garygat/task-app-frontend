@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { FaCheckDouble, FaRegTrashAlt, FaEdit, FaInfo } from 'react-icons/fa';
-import { FaTasks, FaInfoCircle } from 'react-icons/fa';
+import { FaTasks, FaInfoCircle, FaHome } from 'react-icons/fa';
 // import { FcAbout } from 'react-icons/fc';
 
 export const URL = process.env.REACT_APP_SERVER_URL;
@@ -18,7 +18,7 @@ function NavBar() {
     <Navbar
       bg='light'
       expand='lg'
-      className='px-5 fixed-top'
+      className='px-5 sticky-top'
     >
       {/* <Container> */}
       <Navbar.Brand
@@ -36,8 +36,17 @@ function NavBar() {
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='ms-auto nav-link'>
           <Nav.Link
+            href='/'
+            className='fs-3 pe-5'
+          >
+            <FaHome
+              color='#2e5f94'
+              className='nav-bin'
+            />
+          </Nav.Link>
+          <Nav.Link
             href='/deleted'
-            className='fs-3'
+            className='fs-3 pe-5'
           >
             <FaRegTrashAlt
               color='#2e5f94'
@@ -46,7 +55,7 @@ function NavBar() {
           </Nav.Link>
           <Nav.Link
             href='/about'
-            className='fs-3'
+            className='fs-3 pe-5'
           >
             <FaInfoCircle
               color='#2e5f94'

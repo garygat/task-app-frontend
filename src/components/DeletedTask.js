@@ -16,6 +16,11 @@ const DeletedTask = ({ task, index, deleteTask, getSingleTask, setToComplete, re
         <MdRestore
           className='fs-1'
           color='#007bff'
+          onClick={() => returnToTasks(task._id)}
+        />
+        <FaRegTrashAlt
+          className='fs-2'
+          color='#c44f4f'
           onClick={() => deleteTask(task._id)}
         />
       </div>
