@@ -21,7 +21,6 @@ function About() {
           <p>Paulo Santiago</p>
           <p>John Andrei Ignacio</p>
           <p>Kyla Ysabel Nuguid</p>
-
           <p>Gary Andrew Gatchalian</p>
         </div>
       </div>

@@ -1,3 +1,4 @@
+// ! IMPORT DEPENDENCIES
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 // import TaskList from './components/TaskList';
@@ -15,6 +16,7 @@ export const APP_NAME = process.env.REACT_APP_NAME_VAR;
 
 function NavBar() {
   return (
+    // # EXPORT BOOTSTRAP NAVBAR FOR NAVIGATION
     <Navbar
       bg='light'
       expand='lg'
@@ -28,7 +30,7 @@ function NavBar() {
       >
         <FaTasks
           className='nav-logo'
-          // margin='0 5px 0 0'
+          // # GRAB REACT_APP_NAME_VAR FROM DOTENV
         />{' '}
         {' ' + APP_NAME}
       </Navbar.Brand>
@@ -36,6 +38,7 @@ function NavBar() {
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='ms-auto nav-link'>
           <Nav.Link
+            // # HOME
             href='/'
             className='fs-3 pe-5'
           >
@@ -45,6 +48,7 @@ function NavBar() {
             />
           </Nav.Link>
           <Nav.Link
+            // # RECYCLE BIN
             href='/deleted'
             className='fs-3 pe-5'
           >
@@ -54,6 +58,7 @@ function NavBar() {
             />
           </Nav.Link>
           <Nav.Link
+            // # ABOUT
             href='/about'
             className='fs-3 pe-5'
           >

@@ -1,3 +1,4 @@
+// # IMPORT DEPENDENCIES AND COMPONENTS
 import axios from 'axios';
 import TaskForm from './TaskForm';
 import Task from './Task';
@@ -11,6 +12,7 @@ import loadingImg from '../assets/loader.gif';
 const appName = `${process.env.REACT_APP_NAME_VAR}`;
 
 const TaskList = () => {
+  // # STATE HOOKS
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +28,7 @@ const TaskList = () => {
     const { name, value } = e.target;
     setFormData({ ...FormData, [name]: value });
   };
-
+  // # GET ALL ACTIVE TASKS -> TASKCONTROLLER
   const getTasks = async () => {
     setIsLoading(true);
     try {
@@ -38,9 +40,11 @@ const TaskList = () => {
       console.log(error);
     }
   };
+  // # EFFECT HOOK
   useEffect(() => {
     getTasks();
   }, []);
+  // # ADD A NEW TASK -> TASKCONTROLLER
   const createTask = async (e) => {
     e.preventDefault();
     if (name === '') {
@@ -56,6 +60,7 @@ const TaskList = () => {
       console.log(error);
     }
   };
+  // # MOVE A TASK TO BIN  -> TASKCONTROLLER
   const deleteTask = async (id) => {
     try {
       await axios.delete(`${URL}/api/tasks/${id}`);
@@ -64,17 +69,20 @@ const TaskList = () => {
       toast.error(error.message);
     }
   };
+  // # EFFECT HOOK
   useEffect(() => {
     const cTask = tasks.filter((task) => {
       return task.completed === true;
     });
     setCompletedTasks(cTask);
   }, [tasks]);
+  // # USESTATE AND GET A SINGLE TASK
   const getSingleTask = async (task) => {
     setFormData({ name: task.name, completed: false });
     setTaskId(task._id);
     setIsEditing(true);
   };
+  // # FIND AND UPDATE A TASK -> TASKCONTROLLER
   const updateTask = async (e) => {
     e.preventDefault();
     if (name === '') {
@@ -90,6 +98,7 @@ const TaskList = () => {
       toast.error(error.message);
     }
   };
+  // # SET TASK TO COMPLETE
   const setToComplete = async (task) => {
     const newFormData = {
       name: task.name,
@@ -103,6 +112,7 @@ const TaskList = () => {
     }
   };
   return (
+    // # RENDER
     <div>
       {/* <h1>{appName}</h1> */}
       <TaskForm
@@ -112,6 +122,7 @@ const TaskList = () => {
         isEditing={isEditing}
         updateTask={updateTask}
       />
+      {/* CONDITON iF RECORDs > 0 */}
       {tasks.length > 0 && (
         <div className='--flex-between --pb'>
           <p>
@@ -124,6 +135,7 @@ const TaskList = () => {
       )}
 
       <hr />
+      {/* LOADER GIF WHILE PROCESSING */}
       {isLoading && (
         <div className='--flex-center'>
           <img
@@ -139,6 +151,7 @@ const TaskList = () => {
           {tasks.map((task, index) => {
             return (
               <Task
+                // # EXPORT TO TASKJS
                 key={task._id}
                 task={task}
                 index={index}

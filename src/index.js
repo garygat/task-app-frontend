@@ -12,6 +12,7 @@ root.render(
   <React.StrictMode>
     <NavBar />
     <BrowserRouter>
+      {/* ROUTER TO REDIRECT */}
       <Routes>
         <Route
           path='/'

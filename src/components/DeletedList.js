@@ -1,3 +1,4 @@
+// ! IMPORT DEPENDENCIES AND COMPONENTS
 import axios from 'axios';
 import TaskForm from './TaskForm';
 import DeletedTask from './DeletedTask';
@@ -13,6 +14,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; //
 const appName = `${process.env.REACT_APP_NAME_VAR}`;
 
 const DeletedList = () => {
+  // #PAGE STATE
   const [delTasks, setDelTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +31,7 @@ const DeletedList = () => {
     setFormData({ ...FormData, [name]: value });
   };
 
+  // # GET ALL BINNED TASKS -> DELETEDCONTROLLER
   const getDeletedTasks = async () => {
     setIsLoading(true);
     try {
@@ -42,24 +45,12 @@ const DeletedList = () => {
       console.log(error);
     }
   };
+  // # HOOK
   useEffect(() => {
     getDeletedTasks();
   }, []);
-  const createDeletedTask = async (e) => {
-    e.preventDefault();
-    if (name === '') {
-      return toast.error('Input field empty...');
-    }
-    try {
-      await axios.post(`${URL}/api/deleted`, formData);
-      setFormData({ ...formData, name: '' });
-      toast.success('Task added successfully!!!');
-      getDeletedTasks();
-    } catch (error) {
-      toast.error(error.message);
-      console.log(error);
-    }
-  };
+
+  // # PERMANENTLY DELETE A BINNED TASK -> DELETEDCONTROLLER
   const deleteTask = async (id) => {
     try {
       await axios.delete(`${URL}/api/deleted/${id}`);
@@ -69,32 +60,21 @@ const DeletedList = () => {
       toast.error(error.message);
     }
   };
+  // # HOOK
   useEffect(() => {
     const cTask = delTasks.filter((deletedTask) => {
       return deletedTask.completed === true;
     });
     setCompletedTasks(cTask);
   }, [delTasks]);
+
+  // # GET A SINGLE BINNED TASK
   const getSingleTask = async (task) => {
     setFormData({ name: task.name, completed: false });
     setTaskId(task._id);
     setIsEditing(true);
   };
-  const updateTask = async (e) => {
-    e.preventDefault();
-    if (name === '') {
-      return toast.error('Input field empty...');
-    }
-    try {
-      await axios.put(`${URL}/api/deleted/${taskId}`, formData);
-      setFormData({ ...formData, name: '' });
-      setIsEditing(false);
-      toast.success('Task edited successfully!!!');
-      getDeletedTasks();
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
+  // # COMPLETED TO TRUE
   const setToComplete = async (deletedTask) => {
     const newFormData = {
       name: deletedTask.name,
@@ -107,6 +87,7 @@ const DeletedList = () => {
       toast.error(error.message);
     }
   };
+  // # RETURN A BINNED TASK TO ACTIVE TASKS
   const returnToTasks = async (id) => {
     try {
       await axios.delete(`${URL}/api/deleted/restore/${id}`);
@@ -116,6 +97,7 @@ const DeletedList = () => {
       toast.error(error.message);
     }
   };
+  // # CLEAR DATA FROM BINNED TASKS
   const emptyBin = async () => {
     if (delTasks.length > 0) {
       try {
@@ -132,7 +114,7 @@ const DeletedList = () => {
     }
   };
 
-  // #CONFIRM DELETION MODAL
+  // # CONFIRM DELETE ALL MODAL
   const submit = () => {
     confirmAlert({
       title: 'Confirm Emptying Bin',
@@ -149,32 +131,20 @@ const DeletedList = () => {
       ],
     });
   };
-
-  // return (
-  //   <div className='container'>
-  //     <button onClick={submit}>Confirm dialog</button>
-  //   </div>
-  // );
+  // ! RENDER TO APPDELETED
   return (
     <div>
-      {/* <h1>{appName}</h1>
-      <TaskForm
-        name={name}
-        handleInputChange={handleInputChange}
-        createDeletedTask={createDeletedTask}
-        isEditing={isEditing}
-        updateTask={updateTask}
-      /> */}
+      {/*  CONDITION IF THERE ARE RECORDS ON DB */}
       {delTasks.length > 0 && (
         <div className='--flex-between --pb'>
           <p>
             <b>Total Binned Tasks: </b> {delTasks.length}
           </p>
-          <p>{/* <b>Completed Tasks: </b> {completedTasks.length} */}</p>
         </div>
       )}
 
       <hr />
+      {/* # LOADER GIF WHILE PULLING DATA */}
       {isLoading && (
         <div className='--flex-center'>
           <img
@@ -189,6 +159,7 @@ const DeletedList = () => {
         <>
           {delTasks.map((task, index) => {
             return (
+              // # EXPORT TO DELETEDTASK FO RENDERING
               <DeletedTask
                 key={task._id}
                 task={task}
@@ -202,6 +173,7 @@ const DeletedList = () => {
           })}
         </>
       )}
+      {/* CLEAR BUTTON */}
       <div class='text-center'>
         <form
           action='/deleted/delete'
@@ -209,7 +181,7 @@ const DeletedList = () => {
           onSubmit="return confirm('Are you sure you wish to clear your todo list?');"
         >
           <Button
-            // className='text-center fs-1 btn-danger w-100'
+            // # CALL CONFIRM MODAL ONSUBMIT
             id='deleteAll'
             className='btn btn-lg rounded-2 fs-3 --btn-light-blue clear w-100'
             name='delete'
